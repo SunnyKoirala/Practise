@@ -4,20 +4,19 @@ const mongoose=require("mongoose");
 
 
 app.get("/",(req,res)=>{
-    res.send("Hi i am root");
+    res.send("Hi, I am root");
 });
 
 main().then(()=>{
-    console.log("successfully connected to database");
+    console.log("Successfully connected to the DB");
 }).catch((err)=>{
     console.log(err);
 });
 
 async function main()
 {
-    await mongoose.connect("mongodb://127.0.0.1:27017/practise");
+    console.log("Database connection is established");
 }
 app.listen(8080,()=>{
     console.log("Server is listening to port no 8080");
 });
-
