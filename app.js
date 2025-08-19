@@ -1,12 +1,22 @@
 const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
-const 
+const Listing=require("./models/listing");
 
 app.get("/",(req,res)=>{
     res.send("Hi, I am root");
 });
 
+app.get("/testListing",async(req,res)=>{
+    let listingSchema=new Listing({
+        title:"My Home",
+        description:"Beautiful place",
+        price:1500,
+        location:"Kathmandu",
+        country:"Nepal"
+    });
+    await listingSchema.save();
+});
 main().then(()=>{
     console.log("Successfully connected to the DB");
 }).catch((err)=>{
