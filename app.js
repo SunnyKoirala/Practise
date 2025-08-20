@@ -16,6 +16,7 @@ app.get("/testListing",async(req,res)=>{
         country:"Nepal"
     });
     await listingSchema.save();
+    res.send("Successfully tested");
 });
 main().then(()=>{
     console.log("Successfully connected to the DB");
