@@ -2,6 +2,10 @@ const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
 const Listing=require("./models/listing");
+const path=require("path");
+
+app.set("view engine","ejs");
+app.set("views",path.join(__dirname,"views"));
 main().then(()=>{
     console.log("Connected to DB");
 }).catch((err)=>{
@@ -26,6 +30,11 @@ app.get("/testListing",async(req,res)=>{
     await newListing.save();
     console.log("data has been saved successfully");
     res.send("data has been saved successfully");
+});
+
+app.get("/listings",async(req,res)=>{
+ const allListing=await Listing.find({});
+ res.render("listings/index",{allListing});
 });
 
 
